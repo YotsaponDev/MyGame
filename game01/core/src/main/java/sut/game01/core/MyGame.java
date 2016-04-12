@@ -12,24 +12,25 @@ public class MyGame extends Game.Default {
     private ScreenStack ss = new ScreenStack();
     protected final Clock.Source clock = new Clock.Source(UPDATE_RATE);
 
+    public MyGame() {
+        super(UPDATE_RATE); // call update every 33ms (30 times per second)
+    }
 
-  public MyGame() {
-    super(UPDATE_RATE); // call update every 33ms (30 times per second)
-  }
+    @Override
+    public void init() {
 
-  @Override
-  public void init() {
-      ss.push(new HomeScreen(ss));
-  }
+        ss.push(new HomeScreen(ss));
+    }
 
-  @Override
-  public void update(int delta) {
-      ss.update(delta);
-  }
+    @Override
+    public void update(int delta) {
 
-  @Override
-  public void paint(float alpha) {
-      clock.paint(alpha);
-      ss.paint(clock);
-  }
+        ss.update(delta);
+    }
+
+    @Override
+    public void paint(float alpha) {
+        clock.paint(alpha);
+        ss.paint(clock);
+    }
 }
